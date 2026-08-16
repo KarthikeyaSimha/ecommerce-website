@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">ShopEase</div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="register.html">Register</a>
+        <a href="login.html">Login</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<div class="page-title">
+    <h1>Welcome Back</h1>
+</div>
+
+<div class="form-container">
+
+    <h2>Login</h2>
+
+    <form id="loginForm">
+
+        <div class="form-group">
+            <label>Email Address</label>
+            <input type="email"
+                   id="email"
+                   placeholder="Enter your email"
+                   required>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password"
+                   id="password"
+                   placeholder="Enter your password"
+                   required>
+        </div>
+
+        <button type="submit" class="btn form-button">
+            Login
+        </button>
+
+    </form>
+
+    <div class="form-note">
+        Don't have an account?
+        <a href="register.html">Register here</a>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 ShopEase. All Rights Reserved.</p>
+</footer>
+
+<script>
+
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    const user = JSON.parse(localStorage.getItem("shopEaseUser"));
+
+    if (!user) {
+        alert("No account found. Please register first.");
+        return;
+    }
+
+    if (email === user.email && password === user.password) {
+
+        localStorage.setItem("shopEaseLoggedIn", "true");
+
+        alert("Login successful!");
+
+        window.location.href = "profile.html";
+
+    } else {
+
+        alert("Incorrect email or password.");
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
